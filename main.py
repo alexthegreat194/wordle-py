@@ -1,8 +1,8 @@
 from wordle.classes import Guess
 from wordle.words import load_words
 
-correct = 'crane'
-guess_word = 'crape'
+correct = 'words'
+guess_word = 'worms'
 
 words = load_words()
 
