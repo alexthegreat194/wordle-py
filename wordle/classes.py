@@ -12,26 +12,25 @@ class Letter(enum.Enum):
 
 class Guess(object):
 
-    def __init__(self, word: str, correct: str) -> None:
+    def __init__(self, word: str, letters: list[Letter]) -> None:
+        '''__init__ Creates a new Guess object.
 
-        self.letters = []
+        Args:
+            word (str): The word to guess.
+            letters (list[Letter]): The letters that have been guessed.
+        '''
 
-        if len(word) != 5 or len(correct) != 5:
-            raise ValueError('Word and letters must be 5 letters long')
-
-        for i in range(len(word)):
-            if word[i] == correct[i]:
-                self.letters.append(Letter.correct)
-            elif word[i] in correct:
-                self.letters.append(Letter.known)
-            else:
-                self.letters.append(Letter.unknown)
-
+        self.letters = letters
         self.word = word
 
         # print(self.letters, self.word)
 
     def next_possible_words(self) -> list[str]:
+        '''next_possible_words Returns a list of possible words.
+
+        Returns:
+            list[str]: A list of possible words.
+        '''
 
         words = wordle.words.load_words()
 
@@ -86,10 +85,5 @@ class Guess(object):
             if is_possible == True:
                 # print('adding', word)
                 correct_words.append(word)
-
-        
-
-    
-        # pprint(correct_words)
 
         return possible_words
